@@ -1,0 +1,164 @@
+<div id="mainWrapper">
+  <form
+    id="mainForm"
+    #userForm="ngForm"
+    [formGroup]="formGroup"
+    (ngSubmit)="enviarPost(formGroup.value)"
+  >
+    <mat-toolbar>
+      <span>Encuestas variadas de ejemplo Esolutions</span>
+    </mat-toolbar>
+
+    <br />
+
+    <!-- inicio checkboxes -->
+
+    <div>
+      <mat-card class="resultado">
+        <mat-card-content>
+          <h3 class="encuesta-h3">Selecciona Cual encuesta quieres responder:  </h3>
+
+          <section
+            *ngFor="let pregunta of cbpreguntas; let i = index"
+            class="cb-encuesta"
+          >
+       
+            <mat-checkbox
+              formControlName="cbpregunta1"
+              [(ngModel)]="pregunta.checked"
+            >
+              {{ pregunta.pregunta }}
+            </mat-checkbox>
+
+           
+          </section>
+          <ng-container *ngIf="cbpreguntas[0].checked; then estudio; else nada"></ng-container>
+          <ng-container *ngIf="cbpreguntas[1].checked; then musica; else nada"></ng-container>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="result">
+        <mat-card-content>
+          <h4 class="seleccionar-h4">Seleccionar / Deseleccionar</h4>
+
+          <section class="cb-section">
+            <mat-checkbox
+              formControlName="cbpregunta2"
+              (change)="actualizarCheck()"
+              class="example-margin"
+              [(ngModel)]="seleccionarTodo"
+            >
+              Seleccionar Todo
+            </mat-checkbox>
+          </section>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- fin checkboxes -->
+
+    <br />
+
+    <div class="input-container">
+
+      <ng-template #estudio>
+        
+        <mat-tooltip color="primary">
+          <p>Esperamos mostrar con esta encuesta la satisfacion de estudiantes.</p>
+        </mat-tooltip>
+
+        <mat-form-field class="form-element inputwidth">
+          <mat-label>¿En que grado universitario te encuentras?</mat-label>
+          <input
+            matInput
+            placeholder="Escribe Tu Respuesta"
+            formControlName="inputpregunta3"
+          />
+        </mat-form-field>
+    
+        <br />
+    
+        <mat-form-field class="form-element inputwidth">
+          <mat-label>¿Estas satisfecho con los profesores y sus metodos de enseñanaza?</mat-label>
+          <input
+            matInput
+            placeholder="Escribe Tu Respuesta"
+            formControlName="inputpregunta4"
+          />
+        </mat-form-field>
+    
+        <br />
+    
+        <mat-form-field class="form-element inputwidth">
+          <mat-label>¿Estudias alguna carrera relacionada a la tegnologia?</mat-label>
+          <input
+            matInput
+            placeholder="Escribe Tu Respuesta"
+            formControlName="inputpregunta5"
+          />
+        </mat-form-field>
+    
+        <br />
+    
+        <mat-form-field class="form-element inputwidth">
+          <mat-label>¿Crees que es fácil matricularse en diferentes cursos dentro de la universidad?</mat-label>
+          <input
+            matInput
+            placeholder="Escribe Tu Respuesta"
+            formControlName="inputpregunta6"
+          />
+        </mat-form-field>
+
+        <br />
+
+      </ng-template>
+
+      <ng-template #musica>
+
+        <mat-tooltip color="secondary">
+          <p>Esperamos mostrar con esta encuesta los artistas y estilos de musica mas populares.</p>
+        </mat-tooltip>
+
+        <mat-form-field class="form-element inputwidth">
+          <mat-label>¿En que aparato electronico escuchas música abitualmente?</mat-label>
+          <input
+            matInput
+            placeholder="Escribe Tu Respuesta"
+            formControlName="inputpregunta3"
+          />
+        </mat-form-field>
+    
+        <br />
+    
+        <mat-form-field class="form-element inputwidth">
+          <mat-label>¿Música que menos te gusta?</mat-label>
+          <input
+            matInput
+            placeholder="Escribe Tu Respuesta"
+            formControlName="inputpregunta4"
+          />
+        </mat-form-field>
+
+      </ng-template>
+     
+      <ng-template #nada>
+
+      </ng-template>
+
+    </div>
+
+    
+    <div class="form-element container-btn">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="button"
+        [disabled]="!formGroup.valid"
+        (click)="openSnackBar()"
+      >
+        Enviar Formulario
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,91 @@
+<div class="esolutioncontainer">
+
+  <div class="container" *ngIf="!post; else forminfo"> 
+
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+      <mat-toolbar>
+        <span>Encuestas sobre Programacion</span>
+      </mat-toolbar>
+
+      <br>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Email Address" formControlName="email">
+        <mat-error *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched">
+          {{ getErrorEmail() }}
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Nombre" formControlName="name">
+        <mat-error *ngIf="!name.valid && name.touched">
+          {{ titleAlert }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Contraseña" formControlName="password">
+        <mat-hint>Elige una contraseña con al menos 8 caracteres, una letra mayuscula y un numero</mat-hint>
+        <mat-error *ngIf="!formGroup.controls['password'].valid && formGroup.controls['password'].touched">
+          {{ getErrorPassword() }}
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field class="form-element">
+        <textarea matInput placeholder="Direccion" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="15" formControlName="direccion"></textarea>
+        <mat-error *ngIf="!formGroup.controls['direccion'].valid && formGroup.controls['direccion'].touched">
+          Campo requerido, debe tener entre 5 y 10 caracteres.
+        </mat-error>
+      </mat-form-field>
+       
+      <mat-form-field appearance="fill" class="form-element">
+        <mat-label >Elige la Fecha</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="Fecha Nacimiento" formControlName="date">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+
+      </mat-form-field>
+
+      <div class="form-element">
+        <mat-radio-group formControlName="genero">
+
+          <input placeholder="Genero" disabled/>
+          <mat-radio-button *ngFor="let genero of generolist" [value]="genero.value">
+            <span class="wrap-label-text">
+              {{genero.nombre}}
+            </span>
+          </mat-radio-button>
+          
+        </mat-radio-group>
+
+        <mat-error *ngIf="!name.valid && name.touched">
+          {{ titleAlert }}
+        </mat-error>
+      </div>
+  
+      <div class="form-element">
+        <mat-checkbox formControlName="validate" value="1">Al checkear aceptas las condiciones ()</mat-checkbox>
+      </div>
+  
+      <div class="form-element container-btn">
+        <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Enviar Formulario</button>
+      </div>
+  
+  
+    </form>
+
+  </div>
+
+
+  <ng-template #forminfo>
+    <div class="container-encuesta">
+
+      <app-encuesta class="app-encuesta"></app-encuesta>
+
+    </div>
+  </ng-template>
+
+  <br>
+
+</div>

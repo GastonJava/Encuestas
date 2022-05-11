@@ -1,0 +1,41 @@
+#mainWrapper {
+    width: 100%;
+    height: 80%;
+    background: #2c3e44;
+
+    .inputwidth {
+        width:  100%;
+    }
+
+    #mainForm {
+     padding: 10px;
+
+    }
+
+    .form-element {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+    }
+
+    .input-container {
+        width: 80%;
+        height: auto;
+        background: green;
+        overflow-y: scroll;
+    }
+
+    //ancho de los inputs
+    ::ng-deep .mat-form-field-wrapper {
+        width: 80%;
+        background: #2b484b8c;
+        padding: 10px;
+    }
+
+    //underline del input
+    ::ng-deep .mat-form-field-underline {
+        width: 90%;
+    }
+    
+}

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "esolutionproyect": {
+      "hosting": {
+        "esolutionpagina": [
+          "esolutionproyect"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "esolutionproyect"
+  }
+}
